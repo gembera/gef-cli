@@ -82,7 +82,28 @@ genv gload=env/common,release CMAKE_BUILD_TYPE=Debug cmake .
 ```
 The above command override `CMAKE_BUILD_TYPE=Release` to `CMAKE_BUILD_TYPE=Debug` again.
 
-
+At many cases, we have to setup different environment variables for different OS. With `genv` it is pretty easy to do it. For example, We need MinGW cmake generator. We could just add another config with the name `common@win32`
+* common@win32
+```
+CMAKE_GENERATOR=MinGW Makefiles
+```
+When you execute 
+```
+genv gload=env/common,debug cmake .
+```
+It will check if there is an OS specific config exists. In this case, `env/common` has `env/common@win32` peer config. It will be loaded automatically. Thus the full command will be expanded as:
+```
+PROJECT="my project" CMAKE_BUILD_TYPE=Debug CMAKE_GENERATOR="MinGW Makefiles" cmake .
+```
+Execute `ginfo` to get your platform name. For MacOS, it will be `darwin`. You could create 
+* common@darwin
+```
+CMAKE_GENERATOR=Xcode
+```
+In this case, the full command will be
+```
+PROJECT="my project" CMAKE_BUILD_TYPE=Debug CMAKE_GENERATOR=Xcode cmake .
+``` 
 ## gmkdir {dir1} {dir2} ...
 `gmkdir` creates a any deep directory relative to current work directory. 
 
