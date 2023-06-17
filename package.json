@@ -1,6 +1,7 @@
 {
   "name": "@gembera/gef-cli",
   "version": "0.2.0",
+  "gembera": {},
   "repository": "https://github.com/gembera/gef-cli.git",
   "author": "Xinjie ZHANG <xinjie.zhang@gmail.com>",
   "license": "MIT",
@@ -8,11 +9,10 @@
     "postinstall": "node gsync.js"
   },
   "bin": {
-    "ginfo": "./ginfo.js",
     "genv": "./genv.js",
-    "gcp": "./gcp.js",
+    "gcpdir": "./gcpdir.js",
     "gmkdir": "./gmkdir.js",
-    "grm": "./grm.js",
+    "grmdir": "./grmdir.js",
     "gsync": "./gsync.js"
   }
 }

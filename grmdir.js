@@ -2,11 +2,11 @@
 
 const fs = require('fs')
 const path = require('path')
-const { mkdir } = require('./utils')
+const { rmdir } = require('./utils')
 
 let args = process.argv.slice(2)
 args.forEach(dir => {
     dir = path.join(process.cwd(), dir)
-    console.log(`mkdir ${dir}`)
-    mkdir(dir)
+    console.log(`rmdir ${dir}`)
+    rmdir(dir)
 })
