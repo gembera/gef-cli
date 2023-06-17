@@ -6,6 +6,7 @@
   "author": "Xinjie ZHANG <xinjie.zhang@gmail.com>",
   "license": "MIT",
   "bin": {
+    "ginfo": "./ginfo.js",
     "genv": "./genv.js",
     "gcpdir": "./gcpdir.js",
     "gmkdir": "./gmkdir.js",

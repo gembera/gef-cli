@@ -2,10 +2,13 @@
 
 const fs = require('fs')
 const path = require('path')
-const { cwd } = require('./utils')
+const { cwd, getVersion, GPLATFORM } = require('./lib/utils')
 const crossEnv = require('./lib/cross-env')
 const PREFIX_GENV = 'GENV='
-const PREFIX_GPLATFORM = 'GPLATFORM='
+const PREFIX_GPLATFORM = `${GPLATFORM}=`
+
+console.log(`genv v${getVersion()}`)
+
 let args = process.argv.slice(2)
 let extra = []
 let platform = process.platform
@@ -34,7 +37,7 @@ envFiles.forEach(fn => {
         extra = [...extra, ...fs.readFileSync(fn).toString().split('\n').map(s => s.trim())]
     }
 })
-console.log('genv@' + platform + '@' + process.cwd(), [...extra, ...args])
+console.log('  command: ' + [...extra, ...args].join(' '))
 let proc = crossEnv([...extra, ...args])
 let debug = proc.$env['GENV_LOG'] == 'DEBUG'
 if (debug) {
