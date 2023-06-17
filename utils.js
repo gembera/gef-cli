@@ -34,7 +34,7 @@ function cpdir(dirSrc, dirDst, options) {
     }
 }
 function getPackages() {
-    let dirModules = path.join(process.cwd(), 'node_modules')
+    let dirModules = path.join(cwd(), 'node_modules')
     if (fs.existsSync(dirModules)) {
         let submodules = []
         let modules = fs.readdirSync(dirModules).filter((dir) => {
@@ -55,7 +55,11 @@ function getPackages() {
     }
     return []
 }
+function cwd(){
+    return process.env.INIT_CWD || process.cwd()
+}
 module.exports = {
+    cwd,
     mkdir,
     rmdir,
     cpdir,
