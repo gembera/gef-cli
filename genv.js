@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const { cwd, getVersion, GPLATFORM } = require('./lib/utils')
 const crossEnv = require('./lib/cross-env')
-const PREFIX_GENV = 'GENV='
+const PREFIX_GENV = 'gload='
 const PREFIX_GPLATFORM = `${GPLATFORM}=`
 
 console.log(`genv v${getVersion()}`)
@@ -39,7 +39,7 @@ envFiles.forEach(fn => {
 })
 console.log('  command: ' + [...extra, ...args].join(' '))
 let proc = crossEnv([...extra, ...args])
-let debug = proc.$env['GENV_LOG'] == 'DEBUG'
+let debug = proc.$env['glog'] == 'debug'
 if (debug) {
     console.log(proc.$command, proc.$args)
     console.log(proc.$env)
