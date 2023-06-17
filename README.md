@@ -104,6 +104,31 @@ In this case, the full command will be
 ```
 PROJECT="my project" CMAKE_BUILD_TYPE=Debug CMAKE_GENERATOR=Xcode cmake .
 ``` 
+Moreover, you could manually assign a platform name via `gplatform` environment variable:
+```
+genv gplatform=stm32 ginfo
+```
+The result will be something like:
+```
+$ genv gplatform=stm32 ginfo
+genv v1.0.2
+  command: gplatform=stm32 ginfo
+ginfo v1.0.2
+  nodejs: v16.19.1
+  platform: stm32
+  arch: x64
+  cwd: /tmp
+  user: jacky
+```
+`genv` could be nested, the environment variables will be merged in order:
+```
+$ genv K1=1 genv K2=2 K1=100 printenv K1
+genv v1.0.2
+  command: K1=1 genv K2=2 K1=100 printenv K1
+genv v1.0.2
+  command: K2=2 K1=100 printenv K1
+100
+```
 ## gmkdir {dir1} {dir2} ...
 `gmkdir` creates a any deep directory relative to current work directory. 
 
