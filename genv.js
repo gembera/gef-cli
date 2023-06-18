@@ -11,7 +11,7 @@ console.log(`genv v${getVersion()}`)
 
 let args = process.argv.slice(2)
 let extra = []
-let platform = process.platform
+let platform = process.env[GPLATFORM] || process.platform
 let envFiles = []
 args.forEach(arg => {
     if (arg.indexOf(PREFIX_GENV) == 0) {
@@ -29,7 +29,7 @@ args.forEach(arg => {
 })
 args = args.filter(arg => arg.indexOf(PREFIX_GENV) != 0)
 
-function loadEnvFile(fn){
+function loadEnvFile(fn) {
     return fs.readFileSync(fn).toString().split('\n').map(s => s.trim()).filter(s => s && s[0] !== '#')
 }
 envFiles.forEach(fn => {
@@ -44,11 +44,11 @@ envFiles.forEach(fn => {
 
 let exists = {}
 let indexToRemove = {}
-extra.forEach((s, i)=> {
+extra.forEach((s, i) => {
     let pos = s.indexOf('=')
-    if (pos == -1) return 
+    if (pos == -1) return
     let key = s.substring(0, pos)
-    if (undefined !== exists[key]){
+    if (undefined !== exists[key]) {
         indexToRemove[exists[key]] = true
     }
     exists[key] = i
