@@ -28,15 +28,32 @@ args.forEach(arg => {
     }
 })
 
+function loadEnvFile(fn){
+    return fs.readFileSync(fn).toString().split('\n').map(s => s.trim()).filter(s => s && s[0] !== '#')
+}
 envFiles.forEach(fn => {
     if (fs.existsSync(fn)) {
-        extra = [...extra, ...fs.readFileSync(fn).toString().split('\n').map(s => s.trim())]
+        extra = [...extra, ...loadEnvFile(fn)]
     }
     fn += '@' + platform
     if (fs.existsSync(fn)) {
-        extra = [...extra, ...fs.readFileSync(fn).toString().split('\n').map(s => s.trim())]
+        extra = [...extra, ...loadEnvFile(fn)]
     }
 })
+
+let exists = {}
+let indexToRemove = {}
+extra.forEach((s, i)=> {
+    let pos = s.indexOf('=')
+    if (pos == -1) return 
+    let key = s.substring(0, pos)
+    if (undefined !== exists[key]){
+        indexToRemove[exists[key]] = true
+    }
+    exists[key] = i
+})
+extra = extra.filter((s, i) => !indexToRemove[i])
+
 console.log('  command: ' + [...extra, ...args].join(' '))
 let proc = crossEnv([...extra, ...args])
 let debug = proc.$env['glog'] == 'debug'
