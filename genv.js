@@ -27,6 +27,7 @@ args.forEach(arg => {
         platform = arg.substring(PREFIX_GPLATFORM.length)
     }
 })
+args = args.filter(arg => arg.indexOf(PREFIX_GENV) != 0)
 
 function loadEnvFile(fn){
     return fs.readFileSync(fn).toString().split('\n').map(s => s.trim()).filter(s => s && s[0] !== '#')
