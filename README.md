@@ -153,3 +153,7 @@ grmdir v1.0.1
 
 ## gsync 
 `gsync` is used to copy gembera projects from `node_modules` to `pkgs`
+
+
+# Sponsors
+[<img src="https://www.carota.ai/logo-512.png" width="128">](https://www.carota.ai)
