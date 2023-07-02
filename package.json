@@ -1,6 +1,6 @@
 {
   "name": "@gembera/gef-cli",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "repository": "https://github.com/gembera/gef-cli.git",
   "author": "Xinjie ZHANG <xinjie.zhang@gmail.com>",
   "license": "MIT",
@@ -10,6 +10,9 @@
     "gcpdir": "./gcpdir.js",
     "gmkdir": "./gmkdir.js",
     "grmdir": "./grmdir.js",
-    "gsync": "./gsync.js"
+    "gsync": "./gsync.js",
+    "gpb": "./gpb.js ",
+    "gpb-encode": "./gpb-encode.js ",
+    "gpb-decode": "./gpb-decode.js "
   }
 }

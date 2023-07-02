@@ -1,4 +1,5 @@
 node_modules
 tmp
+mnt
 *.lock
 *-lock.json
